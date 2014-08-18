@@ -92,7 +92,7 @@ This implementation demonstrates just as much. In the past code here would set u
 
 We’ll get to Storyboards in a minute. Let’s look at another application example from Xcode. Create a new application as you've already done, but this time make it a *Utility Application* and examine the AppDelegate.m file again.
 
-**Quick Intro to Objective-C Syntax**
+## Quick Intro to Objective-C Syntax
 
 By know you've probably noticed how strange Objective-C syntax is. Obj-C syntax include a mixture of *bracket notation* and *dot notation*. We’ll get more into this in the next chapter, but for now just read through the code and try to guess what each line is doing and now that the use of surrounding brackets `[foo bar]` calls the `bar` method on the `foo` object.
 
@@ -100,7 +100,7 @@ Note how descriptive the code is. This is a common practice in Obj-C and one you
 
 Also note the *camel casing*. Camel casing (first word lower case, rest upper case) is idiomatic in Objective-C and a practice you’ll be expected to follow. Class names and protocol declarations begin with upper case letters, and often static constants, but almost everything else, including method names and variables, begins with a lower case letter and are camel cased so that each following word in the string is capitalized. No underscores!
 
-**View Controllers**
+## View Controllers
 
 In the utility application look at the MainViewController header. Simple, right? Just a class declaration. Recall, what does the `: UIViewController` mean?
 
@@ -112,7 +112,7 @@ Template methods are called automatically by the system when needed but are not 
 
 Don’t let the simplicity of the class fool you. View controllers are where most of your custom application code will go. In the Model-View-Controller pattern, views are generally lightweight and rarely customized. Business logic goes inside your model, such as data validation and data relationships, but almost everything else will go in your controllers, which mediate between the view and the model. These view controller files will get to be hundreds and thousands of lines long.
 
-**Interface Builder and Storyboards**
+## Interface Builder and Storyboards
 
 Typically a single view controller manages a single view, or interface component. Your custom view controllers will manage a range of views that will correspond to screens or panels in your application’s interface. You build these interfaces inside what’s called a Storyboard using the Interface Builder section of Xcode. Select the Main.storyboard file. Notice just how radically different this editor is.
 
@@ -134,7 +134,7 @@ From the Document Outline table at the left we can examine the view hierarchies 
 
 If you control-click the info button at the bottom right of the first view's interface, you’ll see it has an action corresponding to the segue. On the second view, if you control-click the done button or examine its connections, you’ll see it refers to an *action* called `done:` on its view controller. Like an outlet, an action is a way to connect your interface to your code.
 
-**Inspectors**
+## Inspectors
 
 Select the first view in the inspector by click the large grey rectangle. It's difficult to tell you've selected it, but a slight shadow will appear around it. In the Inspectors Panel at the right select the Attributes Inspector:
 
@@ -168,7 +168,7 @@ Run the application in the simulator. Notice that changing the simulated metrics
 
 Let’s change the background color. Anything you like. Maybe something gaudy. Run the app. Ahh, it’s still running in the simulator. That’s ok, just stop it and let Xcode handle it. Switch over to the simulator. We haven't written a line of our own code but we can change the background of our app. We can’t do much with just a `UIView`, the base view class we have here, but it’s nice to be able to customize it without having to code.
 
-**Drag and Drop Interface**
+## Drag and Drop Interface
 
 Look underneath the Inspector view at the Library Panel. It has four tabs, from left to right the File Template library, Code Template library, Object library and Media library. Normally we’ll have the Object Library selected when working with interfaces. These are the system UI components that we can simply drag and drop onto our interface to create buttons, labels, text fields and other views:
 
