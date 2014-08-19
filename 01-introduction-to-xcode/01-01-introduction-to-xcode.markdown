@@ -94,11 +94,11 @@ We’ll get to Storyboards in a minute. Let’s look at another application exam
 
 ## Quick Intro to Objective-C Syntax
 
-By know you've probably noticed how strange Objective-C syntax is. Obj-C syntax include a mixture of *bracket notation* and *dot notation*. We’ll get more into this in the next chapter, but for now just read through the code and try to guess what each line is doing and now that the use of surrounding brackets `[foo bar]` calls the `bar` method on the `foo` object.
+By now you've probably noticed how strange Objective-C syntax is. Obj-C syntax include a mixture of *bracket notation* and *dot notation*. We’ll get more into this in the next chapter, but for now just read through the code and try to guess what each line is doing, knowing that the use of surrounding brackets `[foo bar]` calls the `bar` method on the `foo` object.
 
 Note how descriptive the code is. This is a common practice in Obj-C and one you will be expected to follow. We do not use abbreviations in Obj-C. Be descriptive. This practice is known as *self-documenting code* and makes is much easier to understand what is going on. And because Xcode intelligently autocompletes method and variable names, the length of the name doesn’t really matter. Remember, you can always cmd-click and option-click on a method to get more information about it.
 
-Also note the *camel casing*. Camel casing (first word lower case, rest upper case) is idiomatic in Objective-C and a practice you’ll be expected to follow. Class names and protocol declarations begin with upper case letters, and often static constants, but almost everything else, including method names and variables, begins with a lower case letter and are camel cased so that each following word in the string is capitalized. No underscores!
+Also note the *camel casing*. Camel casing (first word lower case, rest upper case) is idiomatic in Objective-C and a practice you’ll be expected to follow. Class names and protocol declarations begin with upper case letters, and often static constants, but almost everything else, including method names and variables, begin with a lower case letter and are camel cased so that each following word in the string is capitalized. No underscores!
 
 ## View Controllers
 
