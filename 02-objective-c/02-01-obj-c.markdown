@@ -37,7 +37,7 @@ NSInteger kOptionsTag = 66;
 NSString * myString;
 ```
 
-## Dot-Notation and Bracket Notation
+## Dot Notation and Bracket Notation
 
 When we work with objects we use two kinds of syntax: dot notation and bracket notation.
 
@@ -79,7 +79,7 @@ We can mix the two syntaxes to send messages to objects that we access via dot n
 
 Because dot notation is just syntactic sugar that actually uses methods -- setters and getters -- anywhere we use dot notation we can use the bracket syntax instead:
 
-```objetive-c
+```objective-c
 // the two expressions are the same
 self.window
 [self window]
@@ -99,7 +99,7 @@ We can then call that method with bracket syntax and pass an argument to it usin
 [anObject showInfo:self];
 ```
 
-Methods can take more than one argument. Each additional argument is explicitly named and then uses its own colon, typecast and argument name:
+Methods can take more than one argument. Each additional argument is explicitly named and then uses its own colon, type and argument name:
 
 ```objective-c
 // declaration
@@ -108,7 +108,7 @@ Methods can take more than one argument. Each additional argument is explicitly 
 [self showPlacemark:createdPlacemark name:@"name"];
 ```
 
-Methods can of course return values as well as take them. The return type is specified at the start of the method within the first parenthesis and then you use the return keyword at the end of the implementation to return a value:
+Methods can of course return values as well as take them. The return type is specified at the start of the method within the first parenthesis and then you use the `return` keyword at the end of the implementation to return a value:
 
 ```objective-c
 - (UIAlertView*) placemarkWriteError
@@ -136,7 +136,7 @@ We can also *nest* message calls using bracket notation:
 [[[self view] viewWithTag:kOptionsTag] setAlpha:0.4];
 ```
 
-Evaluate the expression from the inside out. First evaluate `[self view]` which calls `view` on `self` and returns an object, then evaluate `[[self view] viewWithTag:kOptionsTag]` which executes `viewWithTag:` on the returned object, then evaluate `[[[self view] viewWithTag:kOptionsTag] setAlpha:0.4];` which executes `setAlpha` and the result of the previous two expressions.
+Evaluate the expression from the inside out. First evaluate `[self view]` which calls `view` on `self` and returns an object, then evaluate `[[self view] viewWithTag:kOptionsTag]` which executes `viewWithTag:` on the returned object, then evaluate `[[[self view] viewWithTag:kOptionsTag] setAlpha:0.4];` which executes `setAlpha` on the result of the previous two expressions.
 
 More examples:
 
@@ -146,7 +146,7 @@ More examples:
 [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:textField.text]]];
 ```
 
-You can always unpack these statements and create local variable to hold each separate object-method pair, but once you grow accustom to it, it is idiomatic to write code this way.
+You can always unpack these statements and create local variables to hold each separate object-method pair, but once you grow accustom to it, it is idiomatic to write code this way.
 
 **Class methods and instance methods**
 
@@ -166,7 +166,6 @@ Class method declarations begin with a plus `+` and instance method declarations
 
 CCTestClass *instance = [[CCTestClass alloc] init];
 [instance instanceMethod]; // called on the instance
-
 ```
 
 Custom class methods are not common in obj-c, although we do see the cooca api use them for convenience methods in place of constructors. 

@@ -19,9 +19,9 @@ Add three properties to the class for name and nationality, all of them `strong`
 
 ## Constructors (Initialization)
 
-Let’s set some default values for these properties. Every object has a default constructor method that is implemented by `NSObject` and can be overridden by a subclass to set up default values. It is in the `init` method.
+Let’s set some default values for these properties. Every object has a default constructor method that is implemented by `NSObject` and can be overridden by a subclass to set up default values. It is the `init` method.
 
-When you override the `init` method you always call super's implementation first and set the result to `self`. You should then ensure that `self` is not `nil` (in case there was a memory error) before setting up your custom values. Finally you will return `self`.
+When you override the `init` method you always call `super`'s implementation first and set the result to `self`. You should then ensure that `self` is not `nil` (in case there was a memory error) before setting up your custom values. Finally you will return `self`.
 
 The template you will see in every case looks like the following. It belongs in the class implementation file:
 
@@ -44,7 +44,7 @@ Note that the generic type `id` is used for the constructor. This is always the 
 
 *When you create a custom model class that directly subclasses `NSObject`, you should always write your constructor this way.*
 
-Inside the constructor you set up default values for your properties and do any other set up work. It is customary to access the instance variables directly within the constructor. This will be one of the only times you access instance values directly.
+Inside the constructor you set up default values for your properties and do any other set up work. It is customary to access the instance variables directly within the constructor. This will be one of the only times you access instance variables directly.
 
 Recall that Xcode creates instance variables for you when you use the `@property` declaration. Those variables will have the same name as your property but be prefixed with an underscore (`_`).
 
@@ -110,14 +110,14 @@ Not all object's provide convenience methods, so it is essential to be familiar 
 
 ## Custom Constructors
 
-Note that these string constructor methods above take parameters. Let’s write our own constructor method that can take two parameters, the first and last name:
+Note that the string constructor methods above take parameters. Let’s write our own constructor method that can take two parameters, the first and last name:
 
 ```objective-c
-- (id) initWithFirstName:(id)inFirstName lastName:(id)inLastName
+- (id) initWithFirstName:(NSString*)inFirstName lastName:(NSString*)inLastName
 {
     if ( self = [self init] ) {
-        self.firstName = inFirstName;
-        self.lastName = inLastName;
+        _firstName = inFirstName;
+        _lastName = inLastName;
     }
     return self;
 }
