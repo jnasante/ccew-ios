@@ -7,7 +7,7 @@ Create a new class `CCPerson` from the File > New > File > Objective-C Class. Sp
 
 Add three properties to the class for name and nationality, all of them `strong` and `nonatomic`:
 
-```objective-c
+```
 @interface CCPerson : NSObject
 
 @property (strong,nonatomic) NSString *firstName;
@@ -25,7 +25,7 @@ When you override the `init` method you always call `super`'s implementation fir
 
 The template you will see in every case looks like the following. It belongs in the class implementation file:
 
-```objective-c
+```
 @implementation CCPerson
 
 - (id) init
@@ -50,7 +50,7 @@ Recall that Xcode creates instance variables for you when you use the `@property
 
 Set default values for the properties of a `CCPerson`:
 
-```objective-c
+```
 @implementation CCPerson
 
 - (id) init
@@ -73,7 +73,7 @@ We’re just assigning string literals to our properties. Now we can create an i
 
 We create instances of an object using the two-stage `alloc` and `init` pattern:
 
-```objective-c
+```
 ClassName *instance = [[ClassName alloc] init];
 ```
 
@@ -81,13 +81,13 @@ The two stage pattern is responsible first for allocating memory for the object 
 
 From a view controller create an instance of a `CCPerson` and log its `firstName` to the console. First we'll need to import the header file into the view controller's implementation file:
 
-```objective-c
+```
 #import "CCPerson.h"
 ```
 
 Then in the `viewDidLoad` method instantiate a person and log the value:
 
-```objective-c
+```
 - (void)viewDidLoad
 {
   [super viewDidLoad];
@@ -99,7 +99,7 @@ Then in the `viewDidLoad` method instantiate a person and log the value:
 
 This two stage `alloc` and `init` pattern is idiomatic to objective-c, although you will often see *convenience* methods added to the class that hide the pattern behind a simpler class method:
 
-```objective-c
+```
 NSString *stringOne = [[NSString alloc] initWithString:@"Text"];
 NSString *stringTwo = [NSString stringWithString:@"Text"];
 ```
@@ -112,7 +112,7 @@ Not all object's provide convenience methods, so it is essential to be familiar 
 
 Note that the string constructor methods above take parameters. Let’s write our own constructor method that can take two parameters, the first and last name:
 
-```objective-c
+```
 - (id) initWithFirstName:(NSString*)inFirstName lastName:(NSString*)inLastName
 {
     if ( self = [self init] ) {
@@ -131,14 +131,14 @@ In our case the designated initializer is simply the overridden `init` method, s
 
 We can then instantiate an instance of `CCPerson` with the custom constructor:
 
-```objective-c
+```
 CCPerson *person = [[CCPerson alloc] initWithFirstName:@"Philip" lastName:@"Dow"];
 NSLog(person.firstName);
 ```
 
 Which is effectively the same as using the default constructor and setting property values:
 
-```objective-c
+```
 CCPerson *person = [[CCPerson alloc] init];
 person.firstName = @"Philip";
 person.lastName = @"Dow";
@@ -153,13 +153,13 @@ Class methods are often defined to create convenience constructors that hide the
 
 First declare it in the header file as a class method:
 
-```objective-c
+```
 + (id) personWithFirstName:(NSString*)firstName lastName:(NSString*)lastName;
 ```
 
 Then implement it in the implementation file, but for the implementation just use the constructor we've already defined:
 
-```objective-c
+```
 + (id) personWithFirstName:(NSString*)firstName lastName:(NSString*)lastName
 {
   CCPerson *person = [[CCPerson alloc] initWithFirstName:firstName lastName:lastName];
@@ -169,7 +169,7 @@ Then implement it in the implementation file, but for the implementation just us
 
 Now we can use the convenience method instead of allocating and initializing the object directly:
 
-```objective-c
+```
 CCPerson *person = [[CCPerson personWithFirstName:@"Philip" lastName:@"Dow"]];
 NSLog(person.firstName);
 ```
@@ -197,13 +197,13 @@ Let's add an instance method to the person class. An instance method begins with
 
 Add an instance method that returns the full name of the person. The header definition looks like:
 
-```objective-c
+```
 - (NSString*) fullName
 ```
 
 The implementation looks like:
 
-```objective-c
+```
 - (NSString*) fullName
 {
   return [NSString stringWithFormat:@"%@ %@", self.firstName, self.lastName];
@@ -218,7 +218,7 @@ The implementation uses the same definition and then implements the body of the 
 
 We can then use the instance method by calling it on an instance of the object with bracket notation:
 
-```objective-c
+```
 [person fullName]
 ```
 
@@ -228,13 +228,13 @@ Define an instance method that takes parameters using a semicolon `(:)`. After t
 
 Create an instance method that takes a parameter for adding a prefix such as "Mr." or "Mrs." to the person's name. The method definition looks like:
 
-```objective-c
+```
 - (NSString*) titledFullName:(NSString*)prefix;
 ```
 
 The implementation can take advantage of the `fullName` method:
 
-```objective-c
+```
 - (NSString*) titledFullName:(NSString*)prefix
 {
   return [NSString stringWithFormat:@"%@ %@", prefix, [self fullName]];
@@ -243,7 +243,7 @@ The implementation can take advantage of the `fullName` method:
 
 The instance method can then be called with arguments by using the semicolon again and placing the argument after it:
 
-```objective-c
+```
 CCPerson *person = [[CCPerson personWithFirstName:@"Philip" lastName:@"Dow"]];
 NSString *name = [person titledFullName:@"Mr."];
 ```
@@ -254,7 +254,7 @@ Define a method with multiple parameters be placing a space between the paramete
 
 For example, define a second method that takes a prefix and a suffic and append it to the full name. The method definition looks like:
 
-```objective-c
+```
 - (NSString*) titledFullName:(NSString *)prefix suffix:(NSString*)suffix;
 ```
 
@@ -266,7 +266,7 @@ This method definition illustrates an important aspect of Objective-C method nam
 
 The implementation for this method looks like:
 
-```objective-c
+```
 - (NSString*) titledFullName:(NSString *)prefix suffix:(NSString*)suffix
 {
   return [NSString stringWithFormat:@"%@ %@ %@", prefix, [self fullName], suffix];
@@ -275,7 +275,7 @@ The implementation for this method looks like:
 
 And it is called as we might call the first method, only name we have something that looks like a named parameter for the suffix:
 
-```objective-c
+```
 CCPerson *person = [[CCPerson personWithFirstName:@"Philip" lastName:@"Dow"]];
 NSString *name = [person titledFullName:@"Mr." suffix:@"PhD"];
 ```

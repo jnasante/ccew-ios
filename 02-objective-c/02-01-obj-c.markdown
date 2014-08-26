@@ -13,7 +13,7 @@ Obj-C also provides a number of common structures which you will become familiar
 
 **Example**
 
-```objective-c
+```
 BOOL cancelling;NSInteger kOptionsTag = 66;
 CGRect frame = CGRectMake(10, 83, 300, 300);
 CGPoint aPoint = CGPointMake(12, 60);
@@ -25,14 +25,14 @@ Just about every other value in obj-c, however, is an object, and objects are ac
 
 **Example**
 
-```objective-c
+```
 NSString * myString;
 NSArray * anArray;
 ```
 
 You must declare your object variables this way. If you forget the asterisk, Xcode will not compile the code. Note that primitive data types are generally not accessed with pointers:
 
-```objective-c
+```
 NSInteger kOptionsTag = 66;
 NSString * myString;
 ```
@@ -45,7 +45,7 @@ Dot notation is used for accessing properties, which are the member variables of
 
 **Example**
 
-```objective-c
+```
 self.viewController = mainViewController;
 self.window.rootViewController = self.viewController;
 
@@ -65,21 +65,21 @@ When we're not accessing instance variables on objects we're often calling metho
 
 **Example**
 
-```objective-c
+```
 [self magnetometerAlert];
 [optionsTimer invalidate];
 ```
 
 We can mix the two syntaxes to send messages to objects that we access via dot notation:
 
-```objective-c
+```
 [self.window makeKeyAndVisible];
 [self.view viewWithTag:kOptionsTag];
 ```
 
 Because dot notation is just syntactic sugar that actually uses methods -- setters and getters -- anywhere we use dot notation we can use the bracket syntax instead:
 
-```objective-c
+```
 // the two expressions are the same
 self.window
 [self window]
@@ -89,19 +89,19 @@ self.window
 
 Methods can take parameters. We declare a method with parameters by using a colon `:` followed by the type in parenthesis and the name of the argument:
 
-```objective-c
+```
 - (IBAction)showInfo:(id)sender;
 ```
 
 We can then call that method with bracket syntax and pass an argument to it using a colon as well:
 
-```objective-c
+```
 [anObject showInfo:self];
 ```
 
 Methods can take more than one argument. Each additional argument is explicitly named and then uses its own colon, type and argument name:
 
-```objective-c
+```
 // declaration
 - (void) showPlacemark:(CLLocation*)placemark name:(NSString*)name;
 // call
@@ -110,7 +110,7 @@ Methods can take more than one argument. Each additional argument is explicitly 
 
 Methods can of course return values as well as take them. The return type is specified at the start of the method within the first parenthesis and then you use the `return` keyword at the end of the implementation to return a value:
 
-```objective-c
+```
 - (UIAlertView*) placemarkWriteError
 {
     UIAlertView *alert = ...
@@ -124,7 +124,7 @@ Use `void` when a method doesn't return a value. `IBAction` is typecast to `void
 
 Getters and setters can be *chained* using dot notation. Simply use more than one dot:
 
-```objective-c
+```
 self.textField.text = @"some text";
 ```
 
@@ -132,7 +132,7 @@ Here there is an instance variable *textField* on *self* which itself has a *tex
 
 We can also *nest* message calls using bracket notation:
 
-```objective-c
+```
 [[[self view] viewWithTag:kOptionsTag] setAlpha:0.4];
 ```
 
@@ -140,7 +140,7 @@ Evaluate the expression from the inside out. First evaluate `[self view]` which 
 
 More examples:
 
-```objective-c
+```
 [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.apple.com"]]];
 
 [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:textField.text]]];
@@ -154,7 +154,7 @@ Finally, we have class methods and instance methods. Class methods are singular 
 
 Class method declarations begin with a plus `+` and instance method declarations begin with a minus `-`:
 
-```objective-c
+```
 @interface CCTestClass : NSObject
 - (void) instanceMethod;
 + (void) classMethod;
@@ -180,7 +180,7 @@ In Java when you declare an object variable as a String or as a Number, you know
 
 Obviously, we’re specifying the type when we declare the variable, but these are only type hints to the compiler, and you can typecast an object to another type if you need to. This is a simple as prefacing your use of the object with parentheses containing the type, as with primitive typecasting:
 
-```objective-c
+```
 // primitive typecasting
 float niceFloat = 1.45;
 int niceInt = (int)niceFloat;
@@ -197,7 +197,7 @@ How are we even allowed to call a method on an object that might not implement i
 
 In Objective-C, think of the emphasis being on the object instead. We send a message to the object, and the object routes it appropriately. In effect, we are requesting the object to perform some action for us, and that action may or may not exist. The object receives our request-message and can then decide what it wants to do with it. When the method is implemented, the Objective-C runtime routes the message to it. When it does not, a default method is used instead which raises a runtime exception, equivalent to crashing your app if you don’t catch it:
 
-```objective-c
+```
 - (void)doesNotRecognizeSelector:(SEL)aSelector;
 ```
 
@@ -207,7 +207,7 @@ This kind of dynamic typing method sending allows us to hack the runtime, and yo
 
 In some cases we'll want to indicate to the compiler that we're working with an object but we will not want to provide any hint as to what type of object that is. In these cases we use the generic type `id`:
 
-```objective-c
+```
 id someObject;
 ```
 
@@ -221,19 +221,19 @@ To create a property, in the header file add a `@property` declaration for a var
 
 Let's add a property to one of the view controllers from a sample application:
 
-```objective-c
+```
 @property NSString *objectTitle;
 ```
 
 Note the use of the asterisk `*` to indicate we have a pointer. We can also declare properties for primitive objects:
 
-```objective-c
+```
 @property NSInteger myIndex;
 ```
 
 Set the values in the `viewDidLoad` method using dot notation and access it using dot notation in one of the `IBAction` methods we have already defined. Access it via `self` in the action method:
 
-```objective-c
+```
 - (void)viewDidLoad
 {
   [super viewDidLoad];
@@ -251,7 +251,7 @@ Property declarations are another form of *syntactic sugar* for both creating in
 
 For `objectTitle` the instance variable will look like:
 
-```objective-c
+```
 @interface ExampleClass : NSObject {
   NSString *_objectTitle;
 }
@@ -261,14 +261,14 @@ For `objectTitle` the instance variable will look like:
 
 And the two method definitions will look like:
 
-```objective-c
+```
 - (void) setObjectTitle:(NSString *)aString;
 - (NSString*) objectTitle;
 ```
 
 Their implementation looks like:
 
-```objective-c
+```
 - (void) setObjectTitle:(NSString *)aString {
     if ( objectTitle != aString ) {
         objectTitle = aString;
@@ -286,7 +286,7 @@ All access to the property then goes through the accessors. It should now be cle
 
 We will often add modifiers to our properties so that a property declaration looks something like this:
 
-```objective-c
+```
 @property (weak, nonatomic) IBOutlet UILabel *textLabel;
 // or
 @property (strong, nonatomic) NSString *objectTitle;
@@ -294,7 +294,7 @@ We will often add modifiers to our properties so that a property declaration loo
 
 The modifiers appear in parenthesis `(...)` immediately after the `@property` declaration and instruct the compiler how to build the getter and setter. The two most common kinds modifiers address *atomicity* and *memory management* although there are others such as `readonly` that cause the compiler to generate a getter but not a setter:
 
-```objective-c
+```
 @property (readonly) NSString *objectTitle;
 ...
 foo.objectTitle // works
@@ -327,7 +327,7 @@ For example, `IBOutlets` on view controllers are often declared `weak` because t
 
 Similarly, two objects may refer to one another in a parent-child relationships, where the parent object maintains a reference to a child object and the child object maintains a reference to the parent. The parent's `child` property should be declared `strong` to ensure that the child is not released from memory before the parent no longer needs it, but the child's `parent` property should be `weak` knowing that the parent always owns the child in the first place and will not be freed from memory before the child is:
 
-```objective-c
+```
 @interface Parent : NSObject
 @property (strong) Child *child;
 @end
@@ -361,19 +361,19 @@ A pointer is a small location in memory that contains an address to a much large
 
 For example, when I declare a property, my instance variable is a pointer to the memory required by an `NSString` object: 
 
-```objective-c
+```
 @property (strong, nonatomic) NSString *objectTitle;
 ```
 
 When I declare a local object variable, I am declaring a pointer:
 
-```objective-c
+```
 NSString *myString = @"Some String Here";
 ```
 
 Now, when I declare a local object variable and then declare a second object variable and assign the first one to it, I am creating two pointers that both contain the same memory address and so point to the same block of memory that actually contains the `NSString` data:
 
-```objective-c
+```
 NSString *firstString = @"Some String Here";
 NSString *secondString = firstString;
 
@@ -385,7 +385,7 @@ NSLog(secondString);
 
 Let’s see this in action. Let’s use a mutable string object, `NSMutableString`, which does permit changes:
 
-```objective-c
+```
 NSMutableString *firstString = [NSMutableString stringWithString:@"Some String Here"];
 NSMutableString *secondString = firstString;
     
@@ -402,7 +402,7 @@ Hopefully this is familiar territory or at least straighforward.
 
 We can also copy the first string, which creates a new block of memory and has our second pointer point to that:
 
-```objective-c
+```
 NSMutableString *firstString = [NSMutableString stringWithString:@"Some String Here"];
 NSMutableString *secondString = [firstString copy];
     
@@ -449,13 +449,13 @@ Let's see the difference between a weak and strong property so we can understand
 
 On a view controller declare a weak property for `objectTitle`:
 
-```objective-c
+```
 @property (weak) NSString *objectTitle;
 ```
 
 In the view controllers `viewDidLoad` method set the property value to an instance of `NSString` (don't use a string literal!):
 
-```objective-c
+```
 - (void)viewDidLoad
 {
   [super viewDidLoad];
@@ -465,7 +465,7 @@ In the view controllers `viewDidLoad` method set the property value to an instan
 
 Create a button and an action for that button. In the action access the value of the `objectTitle` and log it to the console:
 
-```objective-c
+```
 - (IBAction)doSomething:(id)sender
 {
   NSString *title = self.objectTitle;
@@ -477,7 +477,7 @@ Run the application and press the button. `(null)` is logged to the title instea
 
 Modify the property declaration for `objectTitle` so that it is marked  `strong` instead of `weak`:
 
-```objective-c
+```
 @property (strong) NSString *objectTitle;
 ```
 
