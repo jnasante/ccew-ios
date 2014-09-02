@@ -109,7 +109,7 @@ The master-detail application sets up a table based application for us, which is
 
 Create a new single view application. Select the single view controller in the storyboard (not the view) and in the *Attributes Inspector* uncheck the *Is Initial View Controller* option:
 
-[[ image : initial view controller ]]
+![](https://s3.amazonaws.com/okcoders/ios/images/06-01-01-initial-controller.png)
 
 Try running the application. Notice it crashes. That option identifies the main view controller that should be loaded when the application starts. Let's make it a navigation view controller.
 
@@ -119,7 +119,7 @@ By default we're given a table view, which we don't want. Delete it and drag in 
 
 We want to set up a navigation segue to another view. First set a *Title* on the view controller in the Attributes Inspector, call it "Master":
 
-[[ image : master ]]
+![](https://s3.amazonaws.com/okcoders/ios/images/06-01-02-set-title.png)
 
 And add a button to the view.
 
@@ -139,7 +139,9 @@ Let's modify our application so that we handle the button action in code and pus
 
 First delete the push segue between the two view controllers. Select the arrow and press delete.
 
-Second, set up an identifier for the second view controller. Select the view controller (not the view) and in the Identity Inspector set it's *Storyboard ID* to "secondView".
+Second, set up an identifier for the second view controller. Select the view controller (not the view) and in the Identity Inspector set it's *Storyboard ID* to "secondView":
+
+![](https://s3.amazonaws.com/okcoders/ios/images/06-01-03-storyboard-id.png)
 
 Third, we'll need a custom view controller class to handle the button action on the first view controller. Fortunately we already have one provided by the template. Select the first view controller and in the Identity Inspector set its class to `CCViewController` (or whatever class and prefix name was generated for your template).
 
@@ -201,9 +203,11 @@ Most of the customization done to a view controller's navigation item can be acc
 
 In the storyboard, double click in the center area of the navigation bar above a view. You'll be given space to enter in a title. Name the first one "Master" and the second one "Detail":
 
-[[ image: navigation bar title ]]
+![](https://s3.amazonaws.com/okcoders/ios/images/06-01-04-nav-title.png)
 
-We can also drag buttons into the navigation area. Find the *Bar Button Item* in the Object Library and drag one into the right area of the navigation bar on the first view. Bar button items are instances of `UIBarButtonItem`.
+We can also drag buttons into the navigation area. Find the *Bar Button Item* in the Object Library and drag one into the right area of the navigation bar on the first view. Bar button items are instances of `UIBarButtonItem`:
+
+![](https://s3.amazonaws.com/okcoders/ios/images/06-01-05-nav-button.png)
 
 Select the button and in the Attributes Inspector assign it various values for its Style, Identifier, Title and so on. Although this is a special kind of button that only appears in navigation bars or toolbars (which we haven't discussed), it functions like every other button with target-actions and control-drag to view controller for action hookups.
 
@@ -236,3 +240,5 @@ A very common interface pattern combines tab bars with navigation controllers. T
 For this kind of application, begin with a tab bar application. Remove the connection to the view controllers for each tab and then drag in new Navigation View Controllers from the object library. Then connect the tabs to those navigation view controllers.
 
 Remember that each tab maintains its own view controller. If you use navigation view controllers, then each tab, or however many tabs you choose, maintain their own navigation view controllers. Each tab will have a separate navigation stack and changes to the navigation stack on one tab will not and should not affect the navigation stack on another.
+
+You will build a more complex application with tab and navigation controllers in your homework assignment.
