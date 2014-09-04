@@ -326,7 +326,7 @@ We can now add interface elements onto the cell as if it were any other view. Fi
 
 Connecting the outlets to the cell is a little more difficult. We have to go in the opposite direction to what we're used to. Select the first label and choose the Connections inspector. Drag from the Referencing Outlet circle to the cell. Establish both connections in turn: 
 
-[[ image 1 ]]
+![](https://s3.amazonaws.com/okcoders/ios/images/07-01-01-connections.png)
 
 I'm not sure why this is necessary, but I believe it is a bug in Xcode.
 
@@ -364,7 +364,7 @@ Unfortunately because of legacy implementation patterns we need to implement a d
 
 You'll need to get the right height for your cell. Select the cell in the storyboard file and in the Size inspector look at the row height:
 
-[[ image 2 ]]
+![](https://s3.amazonaws.com/okcoders/ios/images/07-01-02-rowheight.png)
 
 Run the application again. The row heights are now correct!
 
