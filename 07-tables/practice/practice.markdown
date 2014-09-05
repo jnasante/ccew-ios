@@ -64,6 +64,7 @@ You will need to research the classes and storyboard items for how to use collec
 The relevant classes and protocols are:
 
 ```objective-c
+UICollectionViewController
 UICollectionView
 UICollectionViewCell
 UICollectionViewDataSource
