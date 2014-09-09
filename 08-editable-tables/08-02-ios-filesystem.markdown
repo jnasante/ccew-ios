@@ -25,11 +25,11 @@ Add a new file to your project. This time choose *Property List* from the *iOS R
 
 A property list is a serialized representation of a `NSDictionary` or `NSArray`. There is a root object that represents one or the other and then content in the object. Let's change the root object *Type* to `NSArray`:
 
-[[ image: property list type ]]
+![](https://s3.amazonaws.com/okcoders/ios/images/08-02-01-plist-type.png)
 
 Then select that row can click the plus button to add new items to the array. The type should be *String* by default, which is what we want, so you'll just need to double click in the *Value* cell to set the strings. Type in the same strings used when we hardcoded the array:
 
-[[ image: completed property list ]]
+![](https://s3.amazonaws.com/okcoders/ios/images/08-02-02-plist-strings.png)
 
 **NSBundle**
 
