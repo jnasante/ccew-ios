@@ -180,9 +180,13 @@ We'll start by templating out and `addItem` `IBAction` to our header and impleme
 
 In the storyboard drag a Bar Button Item from the Object Library to the top right of the navigation bar in the table view. Select it and in the Attributes Inspector set it's Identifier to Add.
 
-![](https://s3.amazonaws.com/okcoders/ios/images/08-01-01-plist-type.png)
+Interface:
 
-![](https://s3.amazonaws.com/okcoders/ios/images/08-01-02-plist-strings.png)
+![](https://s3.amazonaws.com/okcoders/ios/images/08-01-01-add-button.png)
+
+Identifier:
+
+![](https://s3.amazonaws.com/okcoders/ios/images/08-01-02-add-identifier.png)
 
 Control-drag from the item to the view controller icon to connect the action to `addItem:`
 
