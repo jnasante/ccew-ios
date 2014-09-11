@@ -8,7 +8,7 @@ This is a tough assignment. You'll need to look up a number of API's and bring t
 
 Create a new single view application. Make the same changes we made to it today in class to turn it into a navigation controller application with a table view root view and detail view. Do not start with the master-detail template. Practice setting this up.
 
-You'll want to create a custom subclass of `UITableView`, set your custom subclass in the interface, hook up your delegates and data sources and set up your detail view segues.
+You'll want to create a custom subclass of `UITableViewController`, set your custom subclass in the interface, hook up your delegates and data sources and set up your detail view segues.
 
 **Data model**
 
