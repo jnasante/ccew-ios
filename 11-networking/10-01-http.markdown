@@ -127,3 +127,64 @@ That comprises our entire request, as additional headers and a request body are 
 We can also look under the hood in our web browser and view http requests and responses. Activate the developer tools in chrome and choose *Network* from the tab. Browse to google's homepage. At the left you'll see all the resources that were requested by the web browser as the page loaded, including requests for images and additional content like css and javascript files, all identified by the URL path.
 
 Select the first item for *www.google.com* and select the *Headers* section on the right. Google shows you the request and response headers as well as the request type and response code. Select the *Response* section to view the raw response, in this case the html document for google's homepage.
+
+## RESTful APIs
+
+RESTful APIs is an approach to building web applications that uses a set of standard http requests to work with resoruces hosted from a web server. We've discussed the four database operations that any data system must support, the CRUD operations (create, retreive, update and delete).
+
+A distributed application such as one hosted online must support these four operations and provide a way for client applications to execute them. It turns out that the http verbs each correspond to one of the crud operations for accessing or modifying a resource on a server. The verbs can be further paired with a url to create a unique address for performing an operation on a set of resources or on a particular resource in that set.
+
+For example, imagine a server is hosting an address book by way of a person data object. The plural of person is people so that will by the primary relative url for working with resources of type person. In a RESTful API, the following verb and url combinations would be used to access the list of all people, create a new person and get, modify or delete an existing person, all the operations a CRUD system must support:
+
+<table>
+<thead><tr>
+<th>HTTP Verb</th>
+<th>Path</th>
+<th>Used for</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td>/people</td>
+<td>display a list of all people</td>
+</tr>
+<!--
+<tr>
+<td>GET</td>
+<td>/people/new</td>
+<td>return an HTML form for creating a new person</td>
+</tr>
+-->
+<tr>
+<td>POST</td>
+<td>/people </td>
+<td>create a new person</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/people/:id</td>
+<td>display a specific person</td>
+</tr>
+<tr>
+<!--
+<td>GET</td>
+<td>/people/:id/edit</td>
+<td>return an HTML form for editing a person</td>
+</tr>
+-->
+<tr>
+<td>PUT</td>
+<td>/people/:id</td>
+<td>update a specific person</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>/people/:id</td>
+<td>delete a specific person</td>
+</tr>
+</tbody>
+</table>
+
+URLs such as these would render html versions of the page. To request the json version you can often set the http content-type header to `application/json` or append `.json` to the URL.
+
+Popular web application frameworks such as Ruby on Rails and Python's Django make setting up RESTful URLs such as these easy, and you can expect to build a distributed application that uses this API pattern frequently.
