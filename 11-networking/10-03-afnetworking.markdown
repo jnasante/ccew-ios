@@ -147,3 +147,93 @@ For now though run the application and see if it works. Looks like it does.
 
 ## Making POST requests
 
+Following RESTful practices, you create a new resource on a server by posting to the primary URL that is used for viewing a list of those resources. We've seen that you issue a GET request to that url to view the resources. We use a POST request to create one.
+
+We will need to provide a dictionary of values for the post request. We'll create an instance of a `CCPerson`, set its properties, grab the dictionary representation and make the request. Once again will provide success and failure handlers in the form of blocks.
+
+Because of the way the server's API is built, we'll need to pack the person dictionary into another dictionary that takes a single "person" key:
+
+```objective-c
+CCPerson *person = [[CCPerson alloc] initWithFirstName:@"Jane" lastName:@"Doe"];
+person.phoneNumber = @"(555) 555-6419";
+  
+NSDictionary *personDictionary = [person dictionaryRepresentation];
+NSDictionary *paramsDictionary = @{
+	@"person": personDictionary
+}; 
+ 
+[[CCSessionManager sharedInstance] POST:@"people.json" parameters:paramsDictionary success:^(NSURLSessionDataTask *task, id responseObject) {
+	NSLog(@"Original person: %@", personDictionary);
+	NSLog(@"Returned person: %@", responseObject);
+} failure:^(NSURLSessionDataTask *task, NSError *error) {
+	NSLog(@"%@", error);
+}];
+```
+
+Comment out the retrieve code and now run the application. Watch the console log. Notice how the returned dictionary is not the same as the sent dictionary. The server typically reservers the right to modify the object you sent it, performing validations, transforming data and adding properties.
+
+*It is always the client's responsibility to merge the data returned from the server with the data originally sent.*
+
+Normally the client's response will be the canonical, correct representation of the resource created and should be used by the client. In a real application we would problably just send a dictionary to the server and only create an instance of `CCPerson` with the data the server sends back, once again checking for valid properties, something more like this:
+
+```objective-c
+NSDictionary *personDictionary = @{
+	@"firstName": @"Jane",
+	@"lastName:": @"Doe",
+	@"phoneNumber":@"(555) 555-6419"
+};
+NSDictionary *paramsDictionary = @{
+	@"person": personDictionary
+};
+  
+[[CCSessionManager sharedInstance] POST:@"people.json" parameters:paramsDictionary success:^(NSURLSessionDataTask *task, id responseObject) {
+	CCPerson *person = [[CCPerson alloc] initWithDictionary:responseObject];
+	// do something with person, but check for the key-value pairs in response object!
+} failure:^(NSURLSessionDataTask *task, NSError *error) {
+	NSLog(@"%@", error);
+}];
+```
+
+Comment out this code and uncomment the view code. Run the application again and you will see that the server now responds with three people.
+
+## Getting a Single Person
+
+We can make a GET request for a single person. RESTful API's typically identity objects by their ids. The combination of a resource type encoded into the url and an id identifier uniquely identifies the resource in the application.
+
+Make a GET request to the `/people/:id` url where `:id` is replaced by the person's identifier, which could be a number of more complex string. In our example I know we have a person who's id is `1`, so I'll request that individual. Typically you'll get the ideas from the request to the complete list.
+
+```objective-c
+[[CCSessionManager sharedInstance] GET:@"people/1.json" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+	NSLog(@"%@",responseObject);
+} failure:^(NSURLSessionDataTask *task, NSError *error) {
+	NSLog(@"%@",error);
+}];
+```
+
+I could then initialize a `CCPerson` from the response object, again checking for valid key-value pairs.
+
+## Modifying and Deleting a Single Person
+
+RESTful API's use `PUT` and `DELETE` requests to modify an existing resource. Send the request to that resource's url, e.g. `/people/1.json`. Supply a parameter dictionary if you are updating an object and none if you are deleting it.
+
+Here's an example deleting an entry:
+
+```objective-c
+[[CCSessionManager sharedInstance] DELETE:@"people/3.json" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+	NSLog(@"%@",responseObject);
+} failure:^(NSURLSessionDataTask *task, NSError *error) {
+	NSLog(@"%@",error);
+}];
+```
+
+The response object will be `nil`, which makes sense, but you will definitely run either the success or failure handler and your code should take the appropriate action whatever the value of the response object.
+
+## Final Notes
+
+**Know your client's API**
+
+It will be your responsibility to now your client's API. While they will likely follow the general RESTful pattern's I've introduced here the actual behavior, URL's and returned values will likely be significantly different. Moreover you will have to deal with authentication and other forms of client-server security.
+
+**Organize your code**
+
+Due to time constraints I've only demonstrated the use of the `AFNetworking` library here without properly integrated it into an application. Consider how you might better organize this code, where you would store the resonse data, how you will merge data from the server and from your iOS application, and so on. Always be aware of architectual patterns. What you've learned in class may work, but you might also have better options. 
